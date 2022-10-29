@@ -14,6 +14,10 @@ if [ ! -f "/docker_config/init_flag" ]; then
     chown -R $UID:$GID /home/$USER/.config
     # vgl for user
     echo "export PATH=/usr/NX/scripts/vgl:\$PATH" >> /home/$USER/.bashrc
+    echo "VGL_DISPLAY=:1" >> /home/$USER/.bashrc
+    # cuda
+    export "export PATH=$PATH:/usr/local/cuda/bin:\$PATH" >> /home/$USER/.bashrc
+    export "export LD_LIBRARY_PATH=:/usr/local/cuda/lib64:\$LD_LIBRARY_PATH" >> /home/$USER/.bashrc
     # custom init
     bash /docker_config/init.sh
     # update init flag

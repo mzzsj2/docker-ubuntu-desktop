@@ -1,8 +1,8 @@
 ARG BASE_IMAGE=nvidia/opengl:1.2-glvnd-devel-ubuntu18.04
 From $BASE_IMAGE
 
-LABEL maintainer "zhengpeng ge"
-MAINTAINER zhenpeng ge "https://github.com/gezp"
+LABEL maintainer "zhang xin"
+MAINTAINER zhenpeng ge "https://github.com/mzzsj2"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV USER=ubuntu \
@@ -14,16 +14,16 @@ ENV USER=ubuntu \
     LC_ALL=zh_CN.UTF-8 \
     LANGUAGE=zh_CN.UTF-8
 
-## Remove /etc/apt/sources.list.d/* 
+## Remove /etc/apt/sources.list.d/*
 RUN rm -rf /etc/apt/sources.list.d/*
 
-## Install some common tools 
+## Install some common tools
 RUN apt-get update  && \
     apt-get install -y sudo vim gedit locales wget curl git gnupg2 lsb-release net-tools iputils-ping mesa-utils \
                     openssh-server bash-completion software-properties-common python3-pip && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3 2 && \
     pip3 install --upgrade pip &&\
-    rm -rf /var/lib/apt/lists/* 
+    rm -rf /var/lib/apt/lists/*
 
 ## Install desktop
 RUN apt-get update && \
@@ -45,7 +45,7 @@ RUN curl -fSL "https://www.nomachine.com/free/linux/64/deb" -o nomachine.deb &&\
     sed -i "s|#EnableClipboard both|EnableClipboard both |g" /usr/NX/etc/server.cfg &&\
     sed -i '/DefaultDesktopCommand/c\DefaultDesktopCommand "/usr/bin/startxfce4"' /usr/NX/etc/node.cfg
 
-## Configure ssh 
+## Configure ssh
 RUN mkdir /var/run/sshd &&  \
     echo 'root:THEPASSWORDYOUCREATED' | chpasswd && \
     sed -i 's/#*PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config && \
