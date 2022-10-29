@@ -52,7 +52,7 @@ RUN mkdir /var/run/sshd &&  \
     sed -i 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' /etc/pam.d/sshd
 
 ## Cuda sample compile
-RUN apt-get install libglfw3-dev
+RUN apt-get install -y libglfw3-dev
 
 ## Copy config
 COPY docker_config /docker_config
